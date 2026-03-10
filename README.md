@@ -12,6 +12,7 @@ The "Industry-Standard" Relay Cycle
 - The Handover: After the sprint, the team and repository change. I pass my work to a new group, requiring my code to be production-ready and easily digestible for my successors.
 
 Focus: Maintainability & Clean Code
+
 Because this project is a "living" codebase that changes hands frequently, maintainability is the primary metric of success. To ensure the next team can hit the ground running, I focus on:
 
 - Self-Documenting Code: Writing clean, modular logic in C++ that explains why a decision was made, not just what it does.
