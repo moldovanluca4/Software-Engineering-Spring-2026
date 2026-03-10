@@ -1,0 +1,102 @@
+<h1>Project 3 Client Documentation</h1>
+<hr>
+<br>
+
+<div>
+<h2>Name</h2>
+<p><b>client</b> -- connect to bug world sim and allow user to input commands</p>
+</div>
+<br>
+
+<div>
+<h2>Synopsis</h2>
+<p><b>client</b> <i>world_map bug1 bug2</i> [<i>ticks_per_frame</i>] [<i>fps</i>]</p>
+<table>
+    <tr>
+        <th>Argument</th><th>Required</th><th>Description</th><th>Default</th>
+    </tr>
+    <tr>
+        <td>world_map</td><td>Yes</td><td>Path to a .world file</td><td>--</td>
+    </tr>
+    <tr>
+        <td>bug1</td><td>Yes</td><td>Path to a .bug file (Red team program)</td><td>--</td>
+    </tr>
+    <tr>
+        <td>bug2</td><td>Yes</td><td>Path to a .bug file (Black team program)</td><td>--</td>
+    </tr>
+    <tr>
+        <td>ticks_per_frame</td><td>No</td><td>Number of simulation ticks per display frame</td><td>50</td>
+    </tr>
+    <tr>
+        <td>fps</td><td>No</td><td>Target frames per second for display refresh</td><td>10</td>
+    </tr>
+</table>
+</div>
+<br>
+
+<div>
+<h2>Description</h2>
+<p><b>client</b> connects to bug world sim and allows user to input commands. <b>client</b> starts the sim with the given .world and .bug files (sim doc contains info about file formats and output) as a subprocess, then allows the user to type in commands that can affect the sim, this is currently done through the terminal for testing purposes. The ouput of the sim is also currently shown on the terminal. <b>client</b> communicates with sim through cmd_pipe which is used to send commands and data_pipe which is used to read output from the sim. The correct order to open the pipes for <b>client</b> is:</p>
+<ol>
+    <li>Open the cmd pipe for writing</li>
+    <li>Open the data pipe for reading</li>
+</ol>
+<p>Commands are plain text, one per line, terminated by \n.</p>
+<table>
+    <tr>
+        <th>Command</th><th>Description</th></tr>
+    <tr>
+        <td>FETCH\n</td><td>Return the current world state without advancing</td>
+    </tr>
+    <tr>
+        <td>STEP N\n</td><td>Advance N simulation ticks, then return the state</td>
+    </tr>
+    <tr>
+        <td>QUIT \n</td><td>Shut down the simulator cleanly</td>
+    </tr>
+</table> 
+</div>
+<br>
+
+<div>
+<h2>Files</h2>
+<p><b>client</b> depends on the sim.asm file used to simulate bug world as well as the file.world and the bug1.bug and bug2.bug files.</p>
+</div>
+<br>
+
+<div>
+<h2>Exit code</h2>
+<p>Upon succesful completion, <b>client</b> exits with exit code 0. On failure, the error is printed to cerr and exit code 1 is returned.</p>
+</div>
+<br>
+
+<style>
+    body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 2em;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2.5em;
+    }
+    
+    h2 {
+        color:rgb(95, 113, 160);
+        text-transform: uppercase;
+    }
+    
+    table {
+        border-collapse: collapse;
+        width: 70em;
+    }
+
+    td, th {
+        border: black 0.5px solid;
+        padding: 1em;
+    }
+
+    th {
+        background-color: rgb(198, 221, 240);
+    }
+</style>
